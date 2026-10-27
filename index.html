@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; media-src 'self' data: blob:; connect-src 'self' data: blob:; worker-src 'self' blob:; manifest-src 'self'; form-action 'none'; base-uri 'none'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Prime Tools — Prime Checker, Factorization, GCD &amp; LCM | S3eidat Tools</title>
+<meta name="description" content="Check if a number is prime (deterministic Miller-Rabin up to 2^64), factor it with Pollard rho, list divisors, find GCD and LCM with Euclid's steps, primes in a range and the next or previous prime. Free and private.">
+<meta property="og:title" content="Prime Tools — free, private number theory toolkit">
+<meta property="og:description" content="Primality, factorization, divisors, GCD/LCM and prime ranges. Runs 100% in your browser.">
+<link rel="icon" href="kit/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="kit/kit.css">
+<link rel="stylesheet" href="app.css">
+<script src="kit/kit.js"></script>
+<!--s3:seo-->
+<link rel="canonical" href="https://s3eidat.github.io/prime-tools/">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0d0f12">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="S3eidat Tools">
+<meta property="og:url" content="https://s3eidat.github.io/prime-tools/">
+<meta property="og:image" content="https://s3eidat.github.io/prime-tools/screenshot.png">
+<meta property="og:image:width" content="1280"><meta property="og:image:height" content="800">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Prime Tools — Primes, factors, GCD and LCM">
+<meta name="twitter:description" content="Primes, factors, GCD and LCM. Free, private and runs 100% in your browser: no sign-up, no uploads.">
+<meta name="twitter:image" content="https://s3eidat.github.io/prime-tools/screenshot.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Prime Tools", "url": "https://s3eidat.github.io/prime-tools/", "description": "Primes, factors, GCD and LCM. Free, private and runs 100% in your browser: no sign-up, no uploads.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any (web browser)", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "image": "https://s3eidat.github.io/prime-tools/screenshot.png", "author": {"@type": "Person", "name": "s3eidat", "url": "https://github.com/s3eidat"}}</script>
+<!--/s3:seo-->
+</head>
+<body data-tool="prime-tools">
+<main class="s3-main">
+  <section class="s3-hero">
+    <h1>Prime Tools</h1>
+    <p>Is it prime? What are its factors? Exact answers for numbers of any size: Miller-Rabin primality, Pollard rho factorisation, divisors, GCD and LCM with Euclid's steps, and every prime in a range.</p>
+  </section>
+
+  <section class="card stack">
+    <div class="row between">
+      <h2>Check and factor a number</h2>
+      <div class="row">
+        <button class="btn ghost small" type="button" data-try="600851475143">600851475143</button>
+        <button class="btn ghost small" type="button" data-try="2^61-1">2^61−1</button>
+        <button class="btn ghost small" type="button" data-try="561">561</button>
+        <button class="btn small" type="button" id="ncopy"><svg class="i"><use href="#i-copy"/></svg>Copy</button>
+      </div>
+    </div>
+    <label class="sr" for="num">Number</label>
+    <input class="input pt-num" id="num" dir="ltr" inputmode="numeric" autocomplete="off" spellcheck="false" placeholder="Any whole number, or an expression like 2^61-1 or 1000003*1000033">
+    <div id="verdict" class="pt-verdict" aria-live="polite"></div>
+    <div class="stats pt-stats" id="nstats"></div>
+    <div id="divs" class="pt-divs"></div>
+  </section>
+
+  <div class="grid-2 mt pt-cols">
+    <section class="card stack">
+      <h2>GCD and LCM</h2>
+      <label class="field" for="gcdIn"><span>Numbers <span class="faint">(commas or spaces)</span></span></label>
+      <input class="input mono" id="gcdIn" dir="ltr" autocomplete="off" spellcheck="false" placeholder="84, 126, 210">
+      <div class="stats" id="gstats"></div>
+      <details class="pt-steps" id="gsteps" open><summary>Euclid's algorithm</summary><ol id="gsteplist"></ol></details>
+    </section>
+
+    <section class="card stack">
+      <h2>Primes in a range</h2>
+      <div class="row nowrap">
+        <label class="field grow">From<input class="input mono" id="lo" dir="ltr" inputmode="numeric" autocomplete="off" value="1"></label>
+        <label class="field grow">To<input class="input mono" id="hi" dir="ltr" inputmode="numeric" autocomplete="off" value="100"></label>
+      </div>
+      <p class="faint pt-p">Segmented sieve: up to 10,000,000 numbers at a time, below 10¹⁵.</p>
+      <div class="row between"><span class="chip" id="rcount">—</span>
+        <div class="row">
+          <button class="btn ghost small" type="button" id="rcopy"><svg class="i"><use href="#i-copy"/></svg>Copy</button>
+          <button class="btn ghost small" type="button" id="rtxt"><svg class="i"><use href="#i-download"/></svg>.txt</button>
+        </div>
+      </div>
+      <div class="pt-range mono" id="rlist"></div>
+    </section>
+  </div>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
